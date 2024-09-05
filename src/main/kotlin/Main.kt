@@ -1,19 +1,12 @@
-import com.thoughtworks.kotlin_basic.util.PrintUtil
+import com.thoughtworks.kotlin_basic.products.ProductInfoClient
+import com.thoughtworks.kotlin_basic.products.ProductService
 
 fun main(args: Array<String>) {
-    println("Hello World!")
-    println("Program arguments: ${args.joinToString()}")
 
-    val printUtil = PrintUtil()
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
+    val productInfoList = ProductService(ProductInfoClient().getProductInfoClient()).getProductInfo()
 
-    val headers = listOf("ID", "Name", "Occupation")
-    val rows = listOf(
-        listOf("1", "Alice", "Software Engineer"),
-        listOf("2", "Bob", "Data Scientist"),
-        listOf("3", "Charlie", "Product Manager")
-    )
+    for (productWithQuantity in productInfoList) {
+        println(productWithQuantity)
+    }
 
-    printUtil.printTable(headers, rows)
 }
